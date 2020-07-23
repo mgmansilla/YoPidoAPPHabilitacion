@@ -1,14 +1,89 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+
+        <ion-title text-center>
+            Hierbas
+        </ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="_cs.ver_carrito()">
+          <ion-icon name="cart"></ion-icon>
+          <ion-badge color="danger"
+          class="carrito-numero  "
+          *ngIf="_cs.items.length > 0">{{_cs.items.length}}</ion-badge>
+        </button> &nbsp;
+
+        </ion-buttons>
+
+
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+<ion-content no-padding>
+
+    <ion-searchbar (click)="irApaginaBusqueda()"></ion-searchbar>
+
+
+
+
+    <!-- Categotias -->
+
+    <!-- <ion-slides class="featureSlider2">
+        <ion-slide *ngFor="let categoria of _ps.lineas" [navPush]="porCategorias" [navParams]="{ categoria:categoria }">
+            <ion-row>
+                <ion-col>
+                    <ion-card>
+                        <button ion-button item-center block>
+                  <ion-icon [name]="categoria.icono" ></ion-icon>
+                  {{ categoria.linea }}
+                </button>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+        </ion-slide>
+    </ion-slides> -->
+
+
+
+    <!-- Productos -->
+    <ion-grid no-padding>
+        <ion-row *ngFor="let pares of _ps.productos">
+            <ion-col col-6 *ngFor="let item of pares" [navParams]="{producto : item}" [navPush]="productoPage">
+                <ion-card class="product-card">
+
+                    <!-- <ion-img [src]="item.imagen|imagen" class="img-full"></ion-img> -->
+
+                    <img [src]="item.imagen|imagen" no-margin/>
+                    <!-- <ion-img [src]="item.imagen|imagen" no-margin></ion-img> -->
+                    <div>
+                        <ion-label color="black">
+                            <b>{{item.producto}}</b>
+                        </ion-label>
+                        <ion-label color="secondary">
+                            <b>{{ item.precio_compra | currency:'USD' :true}}</b>
+                        </ion-label>
+                        <button ion-button block icon-only round> 
+              <ion-icon name="cart"></ion-icon>
+            </button>
+                    </div>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!--  /Productos   -->
+
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="siguiente_pagina($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="cargando mas productos...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
 </ion-content>

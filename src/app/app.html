@@ -1,1 +1,107 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu side="left" id="authenticated" [content]="content">
+    <ion-header>
+        <ion-toolbar class="user-profile">
+
+            <ion-grid>
+                <ion-row>
+
+                    <ion-col>
+                        <div *ngIf="_us.activo()">
+                            <h5 ion-text class="no-margin bold text-white">
+                                Hola Gracias por Comprar con Nostros.
+                            </h5>
+                        </div>
+                        <span ion-text color="light">Usuario</span>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row no-padding class="other-data">
+                    <ion-col no-padding class="column">
+                        <button ion-button icon-left small full color="light" menuClose *ngIf="_us.activo()" (click)="_us.cerrar_sesion()" (click)="_us.presentLoading()">
+              <ion-icon name="log-out"></ion-icon>
+              Salir
+            </button>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+
+            <button ion-item (click)="irACategoria()">
+          <ion-icon  name="checkmark-circle-outline"></ion-icon>
+            
+            <span ion-text >Categorias</span>
+        </button>
+            <button ion-item (click)="irAnotificaciones()">
+          <ion-icon  name="paper-plane"></ion-icon>
+            
+            <span ion-text >Notificaciones</span>
+        </button>
+
+
+        </ion-list>
+    </ion-content>
+
+
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+
+
+
+
+
+<!-- <ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title text-center>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <button ion-item (click)="0">
+          Inicio
+        </button>
+            <button ion-item *ngIf="_us.activo()" (click)="_us.cerrar_sesion()" (click)="_us.presentLoading()">
+          Salir
+        </button>
+            <button ion-item (click)="0">
+          Events
+        </button>
+
+            <button ion-item (click)="0">
+          Close Menu
+        </button>
+        </ion-list>
+    </ion-content>
+    <ion-footer>
+        <ion-toolbar>
+            <strong>
+            <p text-center>Almacen.</p>
+            <div class="row" text-center>
+              <div class="col">
+                <ion-icon  name="logo-facebook"></ion-icon>
+              </div>
+              <div class="col">
+                <ion-icon  name="logo-instagram"></ion-icon>
+              </div>
+              <div class="col">
+                <ion-icon name="mail"></ion-icon>
+                <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+
+              </div>
+              
+            </div>
+          </strong>
+        </ion-toolbar>
+    </ion-footer>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav> -->

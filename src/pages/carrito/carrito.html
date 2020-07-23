@@ -1,0 +1,98 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <div class="row">
+            <ion-buttons>
+                <button ion-button round (click)="viewCtrl.dismiss()">
+                 Cerrar
+                </button>
+
+            </ion-buttons>
+            <ion-title text-center>Carrito de Compras</ion-title>
+
+
+        </div>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div text-center class="carrito_vacio" *ngIf="_cs.items.length === 0">
+        <ion-icon name="ios-cart" class="icon-5x"></ion-icon>
+        <br> Su carrito esta vacio
+
+    </div>
+
+
+    <div *ngIf="_cs.items.length != 0">
+
+
+        <ion-grid>
+            <ion-row *ngFor="let item of _cs.items; let i = index">
+
+                <ion-col>
+                    <img [src]="item.imagen| imagen" alt="">
+                </ion-col>
+
+                <ion-col>
+                    <p>{{item.producto}}</p>
+
+                    <h3>{{item.precio_compra | currency:'USD':true}}</h3>
+                    <ion-row>
+                        <!-- <div>
+                            <ion-item>
+                                <ion-label>Cantidad</ion-label>
+                                <ion-select [(ngModel)]="item.cantidad">
+                                    <ion-option *ngFor="let cant of cantidades" value="{{cant}}" [selected]="cantidad_selec==cant">{{cant}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </div> -->
+                        <ion-item>
+                            <ion-label>Cantidad</ion-label>
+                            <ion-select [(ngModel)]="item.cantidad">
+                                <ion-option *ngFor="let cant of cantidades" value="{{cant}}">{{cant}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+
+
+
+                    </ion-row>
+                    <div>
+                        <p>Subtotal:{{_cs.calcular_subtotal(item.cantidad,item.precio_compra,subtotal)}}</p>
+
+                        <!-- <p>Subtotal:{{calcular_subtotal(item.cantidad,item.precio_compra)}}</p> -->
+                    </div>
+                    <button ion-button color='danger' outline block small (click)="_cs.remove_item(i)">
+              Eliminar
+            </button>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+        <hr>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <!-- <h3>
+                        <strong>
+                        Total:{{ _cs.actualizar_total() | currency:'USD' :true }}
+                         </strong>
+                    </h3> -->
+                    <h3>
+                        <strong>
+                        Total:{{_cs.actualizar_total2() | currency:'USD' :true }}
+                         </strong>
+                    </h3>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button ion-button block color="amarillo" (click)="_cs.realizar_pedido()">
+      Realizar Pedido
+    </button>
+
+    </div>
+
+</ion-content>

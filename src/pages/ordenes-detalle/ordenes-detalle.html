@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Orden {{orden.id}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item *ngFor="let item of orden.detalle">
+            <ion-thumbnail item-left>
+                <img [src]="item.imagen|imagen">
+            </ion-thumbnail>
+            <h2>{{item.producto}}</h2>
+            <p>{{item.descripcion}}</p>
+            <p>{{item.precio_compra}}</p>
+        </ion-item>
+        <button ion-button clear item-right block color="danger" (click)="borrar_orden(orden.id)">Borrar orden</button>
+    </ion-list>
+
+</ion-content>

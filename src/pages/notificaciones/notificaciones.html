@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            Notificaciones
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list-header>
+        <ion-label>
+            User ID
+        </ion-label>
+    </ion-list-header>
+
+    <ion-item>
+        <ion-label>
+            {{pushService.userdID}}
+        </ion-label>
+    </ion-item>
+
+
+    <ion-list-header>
+        <ion-label>
+            Mensajes de Push
+        </ion-label>
+    </ion-list-header>
+
+
+    <ion-list>
+        <ion-item *ngFor="let push of mensajes">
+            <ion-label>
+                <h3>{{push.title}}</h3>
+                <p>{{push.body}}</p>
+                <p>{{push.additionalData | json}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
