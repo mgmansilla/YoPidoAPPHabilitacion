@@ -83,7 +83,7 @@ export class UsuarioProvider {
     data.append("nombre_completo",nombre_completo);
     data.append("correo",correo);
     data.append("contrasena",contrasena);
-    let url = URL_SERVICIOS + "/inicio/registrar";
+    let url = URL_SERVICIOS + "inicio/registrar";
     return this.http.post( url, data )
       .subscribe( (resp:any) =>{
         let data_resp = resp;

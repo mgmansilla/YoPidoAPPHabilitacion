@@ -11,6 +11,6 @@
 
 //https://almacen-api.herokuapp.com/
 
-export const URL_SERVICIOS="https://yopido.herokuapp.com/";
-export const URL_IMAGENES="https://yopido.herokuapp.com/public/img/productos/";
+export const URL_SERVICIOS="http://198.199.75.164/";
+export const URL_IMAGENES="http://198.199.75.164/public/img/productos/";
 
