@@ -13,6 +13,7 @@ import { PushnotificationProvider } from "../providers/notificaciones/pushnotifi
 //import { HomePage } from '../pages/home/home';
 import { CarritoPage } from '../pages/carrito/carrito';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
+import { WhatssapPage } from '../pages/whatssap/whatssap';
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,6 +21,7 @@ export class MyApp {
   rootPage:any = HomePage;
   categoria= CategoriasPage;
   notificaciones = NotificacionesPage;
+  whatssap= WhatssapPage;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private _cs:CarritoProvider,
@@ -45,6 +47,9 @@ export class MyApp {
   }
   irAnotificaciones(){
     this.ModalCtrl.create(this.notificaciones).present();
+  }
+  irWhatssap(){
+    this.ModalCtrl.create(this.whatssap).present();
   }
 
 

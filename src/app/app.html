@@ -37,12 +37,19 @@
             
             <span ion-text >Categorias</span>
         </button>
+
             <button ion-item (click)="irAnotificaciones()">
           <ion-icon  name="paper-plane"></ion-icon>
             
             <span ion-text >Notificaciones</span>
         </button>
 
+            <a ion-item href="https://api.whatsapp.com/send?phone=5493812009589">
+                <!-- <a href=`https://api.whatsapp.com/send?phone=${phoneNumber}`>Link</a> -->
+                <ion-icon name="logo-whatsapp"></ion-icon>
+
+                <span ion-text>Reclamos y Sugerencias</span>
+            </a>
 
         </ion-list>
     </ion-content>

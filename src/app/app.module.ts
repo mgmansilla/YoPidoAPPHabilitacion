@@ -26,6 +26,7 @@ import { NotificacionesPage } from "../pages/notificaciones/notificaciones";
 import { OneSignal } from '@ionic-native/onesignal';
 
 // import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { WhatssapPage } from '../pages/whatssap/whatssap';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { OneSignal } from '@ionic-native/onesignal';
     BusquedaPage,
     RegistrarPage,
     NotificacionesPage,
+    WhatssapPage,
     
   ],
   imports: [
@@ -67,6 +69,7 @@ import { OneSignal } from '@ionic-native/onesignal';
     BusquedaPage,
     RegistrarPage,
     NotificacionesPage,
+    WhatssapPage,
     
   ],
   providers: [
