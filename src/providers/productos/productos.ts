@@ -85,7 +85,7 @@ this.http.get(url)
  
      let url =URL_SERVICIOS + "/productos/todos/" + this.pagina;
  
-     this.http.get('url')
+     
      this.http.get(url)
               
              .map( data => data )

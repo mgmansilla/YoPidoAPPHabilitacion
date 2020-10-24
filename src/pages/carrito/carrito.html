@@ -31,6 +31,11 @@
 
                 <ion-col>
                     <img [src]="item.imagen| imagen" alt="">
+                    <strong>
+                        <ion-label>Disponible:{{item.stock}}</ion-label>
+
+                    </strong>
+
                 </ion-col>
 
                 <ion-col>
@@ -38,26 +43,49 @@
 
                     <h3>{{item.precio_compra | currency:'USD':true}}</h3>
                     <ion-row>
-                        <!-- <div>
-                            <ion-item>
-                                <ion-label>Cantidad</ion-label>
-                                <ion-select [(ngModel)]="item.cantidad">
-                                    <ion-option *ngFor="let cant of cantidades" value="{{cant}}" [selected]="cantidad_selec==cant">{{cant}}</ion-option>
-                                </ion-select>
-                            </ion-item>
-                        </div> -->
-                        <ion-item>
+
+                        <!-- <ion-item>
                             <ion-label>Cantidad</ion-label>
                             <ion-select [(ngModel)]="item.cantidad">
                                 <ion-option *ngFor="let cant of cantidades" value="{{cant}}">{{cant}}</ion-option>
-                            </ion-select>
+                                <ion-option (click)="recorrerStock(item.stock)" value="{{cant}}">Mas cantidades...</ion-option>
+
+                        </ion-select>
+                        </ion-item>  -->
+
+
+                        <!-- <ion-item>
+                            <ion-buttons>
+                                <button ion-button color="secondary" block value="{{_cs.cantidad}}" (click)="_cs.recorrerStock(item.stock)">Cantidades:{{_cs.cantidad}}</button>
+                            </ion-buttons>
+                        </ion-item> -->
+
+                        <ion-item>
+
+                            <ion-label floating>Cantidades</ion-label>
+                            <ion-input text-center value="{{item.cantidad}}" [(ngModel)]="item.cantidad">{{item.cantidad}}</ion-input>
+
                         </ion-item>
 
+
+
+
+
+
+                        <!-- <ion-item>
+                            <button ion-button color="secondary" [(ngModel)]="item.cantidad" block (click)="showPrompt(data)">Ingresar Cantidades</button>
+                        </ion-item> -->
+
+
+                        <!-- <button ion-button block color="amarillo" (click)="recorrerStock()">
+                           stock
+                          </button> -->
 
 
                     </ion-row>
                     <div>
                         <p>Subtotal:{{_cs.calcular_subtotal(item.cantidad,item.precio_compra,subtotal)}}</p>
+                        <!-- Subtotal:{{_cs.calcular_subtotal(cantidad_selec,item.precio_compra,subtotal)}} -->
 
                         <!-- <p>Subtotal:{{calcular_subtotal(item.cantidad,item.precio_compra)}}</p> -->
                     </div>
@@ -87,6 +115,19 @@
 
                 </ion-col>
             </ion-row>
+        </ion-grid>
+
+
+        <ion-grid>
+            <h3>
+                <strong>Pago:</strong>
+            </h3>
+            <p>
+                Acepto me contacten para elegir y confirmar el metodo de pago y las formas.
+
+            </p>
+
+
         </ion-grid>
 
         <button ion-button block color="amarillo" (click)="_cs.realizar_pedido()">

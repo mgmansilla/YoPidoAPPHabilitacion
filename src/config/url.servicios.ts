@@ -1,6 +1,7 @@
 //codeigniter en local
 //export const URL_SERVICIOS="http://localhost/rest/index.php";
 //export const URL_IMAGENES="http://localhost/rest/public/img/productos/";
+
 //mi maquina en
 //export const URL_SERVICIOS="http://192.168.1.7:8000/";
 //export const URL_IMAGENES="http://192.168.1.7:8000/public/img/productos/";
@@ -11,6 +12,6 @@
 
 //https://almacen-api.herokuapp.com/
 
-export const URL_SERVICIOS="http://198.199.75.164/";
-export const URL_IMAGENES="http://198.199.75.164/public/img/productos/";
+export const URL_SERVICIOS="http://198.199.91.202/";
+export const URL_IMAGENES="http://198.199.91.202/public/img/productos/";
 

@@ -23,9 +23,15 @@ export class CarritoProvider {
   //data:Observable<any>;
   producto_id:string;
   cantidad:string;
+ 
   precio:Number;
   subtotalGeneral:Number;
   total:number;
+
+  // array del stock
+   cantidad_selec:string;
+   cantArray = new Array();
+   cantidadStock:string[];
 
  
 
@@ -74,17 +80,7 @@ export class CarritoProvider {
    // console.log(data);    
   let url = `${URL_SERVICIOS}/pedidos/realizar_orden/${this._us.token}/${this._us.id_usuario}?vv=${Date.now()}`;
 
-//Con este mandamos los datos en un json
-
-  /*let data = new FormData();
-  for (const item of this.items) {
-    data.append("producto_id",item.producto_id);
-    data.append("cantidad",item.cantidad);
-    console.log(data);
-    
-  }*/
-    
-    
+//Con este mandamos los datos en un json    
     return this.http.post( url, data )
       .subscribe( (resp:any) =>{
         console.log(this.items);
@@ -116,36 +112,7 @@ export class CarritoProvider {
         this.reset_storage();
       });
 
-  //Este nos envia la data en formato json el cuerpo
-/*this.data = this.http.post(url,postdata)
-        this.data.subscribe(data=>{
-        console.log(data);
-        
-              let respuesta = data;
-              if (respuesta['error']) {
-                this.alertCtrl.create({
-                  title: 'Error en la orden',
-                  subTitle: respuesta['mensaje'],
-                  buttons: ['ok']
-                }).present();
-                
-              } else {
-            //console.log(postdata);
-            console.log(data);
-            this.items = [];
-            this.alertCtrl.create({
-              title: 'Orden realizada',
-              subTitle: 'Contactaremos con usted en breve.',
-              buttons: ['ok']
-            }).present();
-                
-              }
-          })*/
-
-
-
-         //Reset del storage 
-       // this.reset_storage();//resetea el local storage del dispositivo
+ 
           
   }
 
@@ -211,6 +178,7 @@ export class CarritoProvider {
       acc,
       item,
     ) => acc + (item.precio_compra * item.cantidad),
+    // acc + (item.precio_compra * item.cantidad),
     0);
     console.log("Total: ", this.total)
     return this.total;
@@ -335,6 +303,38 @@ export class CarritoProvider {
                 
 
   }
+
+  recorrerStock(stock){
+ 
+    this.cantArray = new Array(stock);
+    
+       
+       let alert = this.alertCtrl.create();
+       alert.setTitle('Ingrese las Cantidades');
+       for (let cantidadStock=1 ; cantidadStock <= this.cantArray.length; cantidadStock++) {
+       alert.addInput({
+         type: 'checkbox',
+         label:''+cantidadStock,
+         value:''+cantidadStock,
+         checked: false
+       });
+       console.log("Cantidades Disponibles",cantidadStock);
+     }
+   
+       alert.addButton('Cancel');
+       alert.addButton({
+         text: 'Okay',
+         handler: data => {
+           console.log('Checkbox data:', data);
+           this.cantidad=data;
+          
+           
+           
+         }
+       });
+       alert.present();
+             
+     }
 
 
 
