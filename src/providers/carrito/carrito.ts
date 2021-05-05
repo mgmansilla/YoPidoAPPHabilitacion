@@ -42,8 +42,6 @@ export class CarritoProvider {
               private _us:UsuarioProvider,
               private modalCtrl:ModalController,
              ) {
-
-    
                 this.cargar_storage();
                 this.actualizar_total();
                 
@@ -74,10 +72,7 @@ export class CarritoProvider {
     console.log(codigos);
     data.append("items",codigos.join(","));
     console.log(codigos.join(","));
-    //let postdata = new FormData();u
-    //postdata.append("producto_id",producto_id);
-    //postdata.append("cantidad",cantidad);
-   // console.log(data);    
+      
   let url = `${URL_SERVICIOS}/pedidos/realizar_orden/${this._us.token}/${this._us.id_usuario}?vv=${Date.now()}`;
 
 //Con este mandamos los datos en un json    
@@ -147,9 +142,13 @@ export class CarritoProvider {
 
   //agrega al carrito y lo guarda en el storage
   agregar_carrito(item_parametro:any){
-    item_parametro.cantidad='1';
+    item_parametro.cantidad = '1';
+    this.alertCtrl.create({
+      title:"Producto Agregado",
+      subTitle:item_parametro.producto + ", Producto agregado al carrito...",
+      buttons:["OK"]
+    }).present();
     for (let item of this.items) {
-
       if (item.codigo == item_parametro.codigo) {
         this.alertCtrl.create({
           title:"Item existente",
@@ -163,8 +162,24 @@ export class CarritoProvider {
     this.items.push(item_parametro);
     this.actualizar_total();
     this.guardar_storage();
+  }
 
+  bajarCantidadProducto(item_parametro:any){
+    for (let item of this.items) {
+      if(item.codigo == item_parametro.codigo){
+        item.cantidad --;
+        
+      }
+    }
+  }
 
+  aumentarCantidadProducto(item_parametro:any){
+    for (let item of this.items) {
+      if(item.codigo == item_parametro.codigo){
+        item.cantidad ++;
+        
+      }
+    }
   }
 
   calcular_subtotal(cantidad,precio,subtotal){
@@ -178,7 +193,6 @@ export class CarritoProvider {
       acc,
       item,
     ) => acc + (item.precio_compra * item.cantidad),
-    // acc + (item.precio_compra * item.cantidad),
     0);
     console.log("Total: ", this.total)
     return this.total;
@@ -186,22 +200,16 @@ export class CarritoProvider {
 
 
 
-  actualizar_total(){
-
-   
-    
+  actualizar_total(){ 
     this.total_carrito =0;
     this.items.forEach(item => {
-      this.total_carrito += Number(item.precio_compra);
-     
+    this.total_carrito += Number(item.precio_compra);
     });
     console.log('Total:',this.total_carrito);
     return Number(this.total_carrito);
  
     
   }
-
-
 
 
   private guardar_storage(){
@@ -279,9 +287,7 @@ export class CarritoProvider {
     let url = `${URL_SERVICIOS}/pedidos/obtener_pedidos/${this._us.id_usuario}/${this._us.token}`;
     this.http.get(url)
       
-      .subscribe((resp:any)=>{
-        
-
+      .subscribe((resp:any)=>{        
         if (resp['error']) {
 
           //hay un error
@@ -301,7 +307,6 @@ export class CarritoProvider {
 
     return this.http.delete(url);
                 
-
   }
 
   recorrerStock(stock){
@@ -327,9 +332,6 @@ export class CarritoProvider {
          handler: data => {
            console.log('Checkbox data:', data);
            this.cantidad=data;
-          
-           
-           
          }
        });
        alert.present();

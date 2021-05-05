@@ -7,7 +7,7 @@
 
 
         <ion-title text-center>
-            Hierbas
+            Yo Pido
         </ion-title>
 
         <ion-buttons end>
@@ -26,14 +26,27 @@
 
 <ion-content no-padding>
 
+    <ion-slides pager class="featureSlider">
+
+        <ion-slide style="background-image: url('../assets/imgs/Banner2.jpg'); background-position: center center; background-size: cover;">
+             <button ion-button style="right: 20px; bottom: 15%; position: absolute;">Solo lo mejor</button>
+        </ion-slide>
+
+        <ion-slide style="background-image: url('../assets/imgs/banner.png'); background-position: center center; background-size: cover;">
+            <button ion-button style="right: 20px; bottom: 15%; position: absolute;">Explora categorias</button>
+        </ion-slide>
+
+        <ion-slide style="background-image: url('../assets/imgs/Banner1.png'); background-position: center center; background-size: cover;">
+            <button ion-button style="right: 20px; bottom: 15%; position: absolute;">Comprar ahora!</button>
+        </ion-slide>
+    </ion-slides>
+
     <ion-searchbar (click)="irApaginaBusqueda()"></ion-searchbar>
-
-
 
 
     <!-- Categotias -->
 
-    <!-- <ion-slides class="featureSlider2">
+    <!-- <ion-slides class="featureSlider2" spaceBetween="-18" slidesPerView="3">
         <ion-slide *ngFor="let categoria of _ps.lineas" [navPush]="porCategorias" [navParams]="{ categoria:categoria }">
             <ion-row>
                 <ion-col>
@@ -49,30 +62,32 @@
         </ion-slide>
     </ion-slides> -->
 
-
+    <div class="title1 ion-padding">
+        <h2>Nuestros Productos</h2>
+        <p>Ver todo</p>
+      </div>
 
     <!-- Productos -->
-    <ion-grid no-padding>
+    <ion-grid no-padding >
         <ion-row *ngFor="let pares of _ps.productos">
             <ion-col col-6 *ngFor="let item of pares" [navParams]="{producto : item}" [navPush]="productoPage">
-                <ion-card class="product-card">
+               
+                        <ion-card class="product-card" >
 
-                    <!-- <ion-img [src]="item.imagen|imagen" class="img-full"></ion-img> -->
-
-                    <img [src]="item.imagen|imagen" no-margin/>
-                    <!-- <ion-img [src]="item.imagen|imagen" no-margin></ion-img> -->
-                    <div>
-                        <ion-label color="black">
-                            <b>{{item.producto}}</b>
-                        </ion-label>
-                        <ion-label color="secondary">
-                            <b>{{ item.precio_compra | currency:'USD' :true}}</b>
-                        </ion-label>
-                        <button ion-button block icon-only round> 
-              <ion-icon name="cart"></ion-icon>
-            </button>
-                    </div>
-                </ion-card>
+                            <img [src]="item.imagen|imagen" no-margin/>
+                            <div>
+                                <ion-label color="black">
+                                    <b>{{item.producto}}</b>
+                                </ion-label>
+                                <ion-label color="secondary">
+                                    <b>{{ item.precio_compra | currency:'USD' :true}}</b>
+                                </ion-label>
+                                <button ion-button block icon-only round> 
+                                    <ion-icon name="cart"></ion-icon>
+                                </button>
+                            </div>
+                        </ion-card>
+                
             </ion-col>
         </ion-row>
     </ion-grid>

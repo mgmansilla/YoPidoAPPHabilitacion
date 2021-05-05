@@ -8,8 +8,6 @@
 
             </ion-buttons>
             <ion-title text-center>Carrito de Compras</ion-title>
-
-
         </div>
     </ion-navbar>
 </ion-header>
@@ -22,10 +20,7 @@
 
     </div>
 
-
-    <div *ngIf="_cs.items.length != 0">
-
-
+    <!-- <div *ngIf="_cs.items.length != 0">
         <ion-grid>
             <ion-row *ngFor="let item of _cs.items; let i = index">
 
@@ -35,7 +30,6 @@
                         <ion-label>Disponible:{{item.stock}}</ion-label>
 
                     </strong>
-
                 </ion-col>
 
                 <ion-col>
@@ -43,80 +37,32 @@
 
                     <h3>{{item.precio_compra | currency:'USD':true}}</h3>
                     <ion-row>
-
-                        <!-- <ion-item>
-                            <ion-label>Cantidad</ion-label>
-                            <ion-select [(ngModel)]="item.cantidad">
-                                <ion-option *ngFor="let cant of cantidades" value="{{cant}}">{{cant}}</ion-option>
-                                <ion-option (click)="recorrerStock(item.stock)" value="{{cant}}">Mas cantidades...</ion-option>
-
-                        </ion-select>
-                        </ion-item>  -->
-
-
-                        <!-- <ion-item>
-                            <ion-buttons>
-                                <button ion-button color="secondary" block value="{{_cs.cantidad}}" (click)="_cs.recorrerStock(item.stock)">Cantidades:{{_cs.cantidad}}</button>
-                            </ion-buttons>
-                        </ion-item> -->
-
-                        <ion-item>
-
+                         <ion-item>
                             <ion-label floating>Cantidades</ion-label>
                             <ion-input text-center value="{{item.cantidad}}" [(ngModel)]="item.cantidad">{{item.cantidad}}</ion-input>
-
-                        </ion-item>
-
-
-
-
-
-
-                        <!-- <ion-item>
-                            <button ion-button color="secondary" [(ngModel)]="item.cantidad" block (click)="showPrompt(data)">Ingresar Cantidades</button>
-                        </ion-item> -->
-
-
-                        <!-- <button ion-button block color="amarillo" (click)="recorrerStock()">
-                           stock
-                          </button> -->
-
-
+                        </ion-item> 
                     </ion-row>
                     <div>
-                        <p>Subtotal:{{_cs.calcular_subtotal(item.cantidad,item.precio_compra,subtotal)}}</p>
-                        <!-- Subtotal:{{_cs.calcular_subtotal(cantidad_selec,item.precio_compra,subtotal)}} -->
-
-                        <!-- <p>Subtotal:{{calcular_subtotal(item.cantidad,item.precio_compra)}}</p> -->
+                        <p>Subtotal:{{_cs.calcular_subtotal(item.cantidad,item.precio_compra,subtotal)}}</p>                        
                     </div>
                     <button ion-button color='danger' outline block small (click)="_cs.remove_item(i)">
-              Eliminar
-            </button>
-
+                        Eliminar
+                    </button>
                 </ion-col>
             </ion-row>
         </ion-grid>
-
-
         <hr>
         <ion-grid>
             <ion-row>
-                <ion-col>
-                    <!-- <h3>
-                        <strong>
-                        Total:{{ _cs.actualizar_total() | currency:'USD' :true }}
-                         </strong>
-                    </h3> -->
+                <ion-col>                    
                     <h3>
                         <strong>
-                        Total:{{_cs.actualizar_total2() | currency:'USD' :true }}
-                         </strong>
+                            Total:{{_cs.actualizar_total2() | currency:'USD' :true }}
+                        </strong>
                     </h3>
-
                 </ion-col>
             </ion-row>
         </ion-grid>
-
 
         <ion-grid>
             <h3>
@@ -124,16 +70,65 @@
             </h3>
             <p>
                 Acepto me contacten para elegir y confirmar el metodo de pago y las formas.
-
             </p>
-
 
         </ion-grid>
 
         <button ion-button block color="amarillo" (click)="_cs.realizar_pedido()">
-      Realizar Pedido
-    </button>
-
+            Realizar Pedido
+        </button>
+    </div> -->
+    <div *ngIf="_cs.items.length != 0">
+        <div class="cart-items" *ngFor="let item of _cs.items; let i = index">
+                <ion-card mode="ios">
+                        <ion-card-content>
+                            <div class="item-img">
+                                <img [src]="item.imagen| imagen" />
+                            </div>
+                
+                        <div class="item-info">
+                            <p>{{item.producto}}</p>
+                            <p>Disponible:{{item.stock}}</p>
+                            <p>$ {{_cs.calcular_subtotal(item.cantidad,item.precio_compra,subtotal)}}</p>
+                    
+                            <div class="qty-selector">
+                            <button class="ion-button1" fill="clear"  [disabled]="item.cantidad < 2 "(click)="_cs.bajarCantidadProducto(item)">
+                                <ion-icon name="remove-circle" slot="icon-only" ></ion-icon>
+                            </button>
+                            <ion-input text-center [(ngModel)]="item.cantidad">{{item.cantidad}}</ion-input>
+                            <!-- <label class="ion-label1" >{{item.cantidad}}</label> -->
+                            <button class="ion-button1" fill="clear" [disabled]="item.cantidad == item.stock " (click)="_cs.aumentarCantidadProducto(item)">
+                                <ion-icon name="add-circle" slot="icon-only" ></ion-icon>
+                            </button>
+                            </div>
+                        </div>
+                    </ion-card-content>
+                    <button ion-button color='danger' outline block small (click)="_cs.remove_item(i)">
+                        Eliminar
+                    </button>
+                </ion-card>       
+        </div>
+        <ion-grid>
+            <ion-row>
+                <ion-col>                    
+                    <h3>
+                        <strong>
+                            Total:{{_cs.actualizar_total2() | currency:'USD' :true }}
+                        </strong>
+                    </h3>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid>
+            <h3>
+                <strong>Pago:</strong>
+            </h3>
+            <p>
+                Acepto me contacten para elegir y confirmar el metodo de pago y las formas.
+            </p>
+        </ion-grid>
+        <button ion-button block color="amarillo" (click)="_cs.realizar_pedido()">
+            Realizar Pedido
+        </button>
     </div>
-
 </ion-content>
