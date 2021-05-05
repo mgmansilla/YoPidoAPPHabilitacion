@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform,ModalController} from 'ionic-angular';
+import { Platform,ModalController,App} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage,HomePage,CategoriasPage} from "../app/index.pages";
@@ -14,12 +14,13 @@ import { PushnotificationProvider } from "../providers/notificaciones/pushnotifi
 import { CarritoPage } from '../pages/carrito/carrito';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 import { WhatssapPage } from '../pages/whatssap/whatssap';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = HomePage;
-  categoria= CategoriasPage;
+  categoria:any;
   notificaciones = NotificacionesPage;
   whatssap= WhatssapPage;
 
@@ -27,7 +28,8 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private _cs:CarritoProvider,
     private _us:UsuarioProvider,  
     private ModalCtrl:ModalController,
-    private pushProvider:PushnotificationProvider) {
+    private pushProvider:PushnotificationProvider,
+    public app: App) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -37,16 +39,18 @@ export class MyApp {
       this.pushProvider.init_notification();
     });
 
+    
+
 
     
   }
 
   irACategoria(){
-    this.ModalCtrl.create(this.categoria).present();
+    this.app.getActiveNav().push(CategoriasPage);
 
   }
   irAnotificaciones(){
-    this.ModalCtrl.create(this.notificaciones).present();
+    this.app.getActiveNav().push(NotificacionesPage);
   }
   irWhatssap(){
     this.ModalCtrl.create(this.whatssap).present();

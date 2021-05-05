@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController , NavParams,ModalController } from 'ionic-angular';
+import { NavController , NavParams,ModalController,App } from 'ionic-angular';
 import { ProductosProvider } from "../../providers/productos/productos";
 import { ProductoPage } from "../producto/producto";
 import { CarritoProvider } from "../../providers/carrito/carrito";
@@ -23,7 +23,8 @@ export class HomePage {
     private _cs:CarritoProvider,
     private _us:UsuarioProvider,
     public navParams: NavParams,
-    private modalCtrl:ModalController) {
+    private modalCtrl:ModalController,
+    public app: App) {
 
   }
 
@@ -39,7 +40,7 @@ export class HomePage {
   }
 
   irApaginaBusqueda(){
-    this.modalCtrl.create(this.busqueda).present();
+    this.app.getActiveNav().push(BusquedaPage);
   }
 
   
