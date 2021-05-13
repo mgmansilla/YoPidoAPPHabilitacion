@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform,ModalController,App} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { TabsPage,HomePage,CategoriasPage} from "../app/index.pages";
+import { TabsPage,HomePage,CategoriasPage,OrdenesPage} from "../app/index.pages";
 import { CarritoProvider } from "../providers/carrito/carrito";
 import { UsuarioProvider } from './index.services';
 
@@ -51,6 +51,9 @@ export class MyApp {
   }
   irAnotificaciones(){
     this.app.getActiveNav().push(NotificacionesPage);
+  }
+  irAPedidos(){
+    this.app.getActiveNav().push(OrdenesPage);
   }
   irWhatssap(){
     this.ModalCtrl.create(this.whatssap).present();

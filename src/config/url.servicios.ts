@@ -12,6 +12,6 @@ export const URL_IMAGENES="http://127.0.0.1:8000/public/img/productos/";
 
 //https://almacen-api.herokuapp.com/
 
- //export const URL_SERVICIOS="http://134.209.123.95/";
+// export const URL_SERVICIOS="http://134.209.123.95/";
 // export const URL_IMAGENES="http://134.209.123.95/public/img/productos/";
 

@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>Orden {{orden.id}}</ion-title>
     </ion-navbar>
 </ion-header>
@@ -12,10 +12,11 @@
                 <img [src]="item.imagen|imagen">
             </ion-thumbnail>
             <h2>{{item.producto}}</h2>
-            <p>{{item.descripcion}}</p>
-            <p>{{item.precio_compra}}</p>
+            <p>Cantidad:{{item.cantidad}}</p>
+            <p>Precio:{{item.precio_compra}}</p>
+            <p>Subtotal:{{item.cantidad * item.precio_compra}}</p>
         </ion-item>
-        <button ion-button clear item-right block color="danger" (click)="borrar_orden(orden.id)">Borrar orden</button>
+        <!-- <button ion-button clear item-right block color="danger" (click)="borrar_orden(orden.id)">Borrar orden</button> -->
     </ion-list>
 
 </ion-content>
