@@ -26,7 +26,7 @@
 
 <ion-content no-padding>
 
-    <ion-slides pager class="featureSlider">
+    <ion-slides pager class="featureSlider"  autoplay="5000" loop="true">
 
         <ion-slide style="background-image: url('../assets/imgs/Banner2.jpg'); background-position: center center; background-size: cover;">
              <button ion-button style="right: 20px; bottom: 15%; position: absolute;">Solo lo mejor</button>
@@ -42,25 +42,6 @@
     </ion-slides>
 
     <ion-searchbar (click)="irApaginaBusqueda()"></ion-searchbar>
-
-
-    <!-- Categotias -->
-
-    <!-- <ion-slides class="featureSlider2" spaceBetween="-18" slidesPerView="3">
-        <ion-slide *ngFor="let categoria of _ps.lineas" [navPush]="porCategorias" [navParams]="{ categoria:categoria }">
-            <ion-row>
-                <ion-col>
-                    <ion-card>
-                        <button ion-button item-center block>
-                  <ion-icon [name]="categoria.icono" ></ion-icon>
-                  {{ categoria.linea }}
-                </button>
-                    </ion-card>
-                </ion-col>
-            </ion-row>
-
-        </ion-slide>
-    </ion-slides> -->
 
     <div class="title1 ion-padding">
         <h2>Nuestros Productos</h2>
